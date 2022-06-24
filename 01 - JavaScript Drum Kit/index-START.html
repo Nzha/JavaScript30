@@ -63,13 +63,18 @@
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
     if (!audio) return;
+
+    // Current audio does not have to finish playing when a new key is pressed
     audio.currentTime = 0;
+
     audio.play();
     key.classList.add('playing');
   }
 
   function removeTransition(e) {
+    // Pick longest transition (i.e. 'transform') then remove 'playing' class
     if (e.propertyName !== 'transform') return;
+
     this.classList.remove('playing');
   }
 
